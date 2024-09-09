@@ -1,0 +1,35 @@
+@model IEnumerable<Estoque.Models.Produto>
+
+<h2>Lista de Produtos</h2>
+
+<a asp-action="Create">Adicionar Produto</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Quantidade</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nome</td>
+            <td>@item.Quantidade</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<div>
+    <a class="btn btn-primary" href="/Relatorios/RelatorioTodosProdutos">Gerar Relatório de Todos os Produtos</a><br><br>
+    <a class="btn btn-warning" href="/Relatorios/RelatorioEstoqueBaixo">Gerar Relatório de Estoque Baixo</a><br><br>
+    <a class="btn btn-info" href="/Relatorios/RelatorioMovimentacao">Gerar Relatório de Movimentação</a><br><br>
+    <a class="btn btn-secondary" href="/Relatorios/RelatorioProdutosSemMovimentacao">Gerar Relatório de Produtos Sem Movimentação</a>
+</div>
