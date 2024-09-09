@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Adicionar serviços ao container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<EstoqueContext>(options =>
     options.UseSqlite("Data Source=estoque.db"));
@@ -12,7 +11,6 @@ builder.Services.AddScoped<PdfService>();
 
 var app = builder.Build();
 
-// Configuração do pipeline HTTP.
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -23,7 +21,7 @@ else
     app.UseHsts();
 }
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
